@@ -7,10 +7,11 @@ It uses a Raspberry Pi to host a local SQLite database of Scryfall Oracle data, 
 ## Hardware Requirements
 
 * **Raspberry Pi:** Any model with USB and GPIO capabilities (Pi 3, Pi 4, or Zero 2 W).
-* **58mm USB Thermal Receipt Printer:** A model with a 5V input voltage is highly recommended to simplify power management.
+* **58mm USB Thermal Receipt Printer:** A model with a 5V input voltage is highly recommended to simplify power management. I used [this one] (https://a.co/d/01qTDcjr). 
 * **SSD1306 OLED Display:** 128x64 resolution, I2C interface.
 * **Rotary Encoder:** Standard encoder with a built-in push-button switch (e.g., KY-040).
-* **Power Supply:** A 5V / 6A (or higher) DC power supply, a 1-to-2 DC barrel splitter, and a DC-to-USB adapter. This ensures the Pi and printer are powered simultaneously without brownouts during print jobs.
+* **Power Supply:** A 5V / 6A (or higher) DC power supply. I used [this one](https://a.co/d/04z9gR1Y). It came with a barrel jack screw terminal that I wired the thermal printers power and ground to. I striped a micro-usb cable to also power the raspberry pi through the same screw terminals.
+* **Mini-USB to USB-A cable:** To connect the Thermal printer to the Raspberry Pi
 
 ## Wiring & Pinout
 
