@@ -53,7 +53,7 @@ Reboot the Raspberry Pi to apply the group changes.
 ### 3. Building the Database
 Due to GitHub file size limits, the `momir_library_art.db` file is not included in this repository. You must generate it locally.
 
-1. Download the "Oracle Cards" JSON file from Scryfall's Bulk Data page.
+1. Download the "Oracle Cards" JSON file from Scryfall's Bulk Data page. [link](https://scryfall.com/docs/api/bulk-data)
 2. Place the JSON file in the same directory as the included `db_builder.py` script.
 3. Run the builder script: `python3 db_builder.py`
 4. This process downloads and dithers artwork for every creature in the database. It will take a few hours depending on your internet connection. Once complete, ensure the resulting `.db` file is in the same directory as `momir_basic.py`.
