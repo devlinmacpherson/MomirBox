@@ -39,3 +39,41 @@ Run the following commands to install the required system packages and Python li
 sudo apt update
 sudo apt install python3-pip libopenjp2-7 libtiff5 nodejs npm -y
 pip3 install adafruit-circuitpython-ssd1306 Pillow gpiozero python-escpos
+```
+
+### 2. User Permissions
+Add your user to the `lp` and `dialout` groups to grant the Python script permission to communicate with the USB printer:
+
+```bash
+sudo usermod -a -G lp pi
+sudo usermod -a -G dialout pi
+```
+Reboot the Raspberry Pi to apply the group changes.
+
+### 3. Building the Database
+Due to GitHub file size limits, the `momir_library_art.db` file is not included in this repository. You must generate it locally.
+
+1. Download the "Oracle Cards" JSON file from Scryfall's Bulk Data page.
+2. Place the JSON file in the same directory as the included `db_builder.py` script.
+3. Run the builder script: `python3 db_builder.py`
+4. This process downloads and dithers artwork for every creature in the database. It will take a few hours depending on your internet connection. Once complete, ensure the resulting `.db` file is in the same directory as `momir_basic.py`.
+
+### 4. Running on Boot (PM2)
+To run the device as a headless appliance, configure PM2 to start the script automatically.
+
+```bash
+sudo npm install -g pm2
+pm2 start momir_basic.py --interpreter python3 --name "momir"
+pm2 startup
+```
+Copy and execute the output command provided by PM2, then save the process list:
+```bash
+pm2 save
+```
+
+## Usage
+
+1.  **Boot:** Connect power. The Pi will boot and load the script within roughly 30 seconds.
+2.  **Select CMC:** Turn the rotary encoder to select a value between 0 and 16.
+3.  **Print:** Press and immediately release the rotary encoder button. 
+4.  **Shutdown:** Press and hold the rotary encoder button for 3 seconds. The OLED will display a shutdown message. Wait for the Raspberry Pi's activity LED to stop blinking before removing power to avoid SD card corruption.
